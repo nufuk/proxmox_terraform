@@ -46,6 +46,11 @@ variable "ssh_public_key" {
     type = string
     sensitive = true  
 }
+variable "ssh_public_key_jenkins" {
+    description = "SSH key for access to the VM/CT"
+    type = string
+    sensitive = true
+}
 variable "ssh_private_key" {
     description = "SSH key for access to the VM/CT"
     type = string

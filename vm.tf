@@ -46,6 +46,7 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
+		var.ssh_public_key_jenkins,
                 trimspace(tls_private_key.container_key.public_key_openssh)]
             password = random_password.vm_password.result
             username = "nufuk"
@@ -101,6 +102,7 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
+		var.ssh_public_key_jenkins,
                 trimspace(tls_private_key.container_key.public_key_openssh)]
             password = random_password.vm_password.result
             username = "nufuk"
@@ -156,6 +158,7 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
+		var.ssh_public_key_jenkins,
                 trimspace(tls_private_key.container_key.public_key_openssh)]
             password = random_password.vm_password.result
             username = "nufuk"

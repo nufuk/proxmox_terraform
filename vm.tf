@@ -46,8 +46,7 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
-		var.ssh_public_key_jenkins,
-                trimspace(tls_private_key.container_key.public_key_openssh)]
+		        var.ssh_public_key_jenkins]
             password = random_password.vm_password.result
             username = "nufuk"
         }
@@ -102,8 +101,7 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
-		var.ssh_public_key_jenkins,
-                trimspace(tls_private_key.container_key.public_key_openssh)]
+		        var.ssh_public_key_jenkins]
             password = random_password.vm_password.result
             username = "nufuk"
         }
@@ -158,73 +156,13 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
             keys = [
                 trimspace(tls_private_key.vm_key.public_key_openssh), 
                 var.ssh_public_key,
-		var.ssh_public_key_jenkins,
-                trimspace(tls_private_key.container_key.public_key_openssh)]
+		        var.ssh_public_key_jenkins]
             password = random_password.vm_password.result
             username = "nufuk"
         }
     }
 }
 
-resource "null_resource" "save_keys_1" {
-    depends_on = [proxmox_virtual_environment_vm.pve1_vm, tls_private_key.vm_key]
-    provisioner "remote-exec" {
-        inline = [
-            "mkdir -p /home/nufuk/.ssh",
-            "echo '${tls_private_key.vm_key.private_key_openssh}' > /home/nufuk/.ssh/id_ed25519",
-            "chmod 600 /home/nufuk/.ssh/id_ed25519",
-            "echo '${tls_private_key.vm_key.public_key_openssh}' > /home/nufuk/.ssh/id_ed25519.pub",
-            "chmod 644 /home/nufuk/.ssh/id_ed25519.pub"
-        ]
-    connection {
-        type     = "ssh"
-        user     = "nufuk"  # oder Ihr Benutzer
-        private_key = tls_private_key.vm_key.private_key_openssh # oder Private Key
-        host     = "192.168.1.10"
-        port     = 22
-    }
-  }  
-}
-
-resource "null_resource" "save_keys_2" {
-    depends_on = [proxmox_virtual_environment_vm.pve2_vm, tls_private_key.vm_key]
-    provisioner "remote-exec" {
-        inline = [
-            "mkdir -p /home/nufuk/.ssh",
-            "echo '${tls_private_key.vm_key.private_key_openssh}' > /home/nufuk/.ssh/id_ed25519",
-            "chmod 600 /home/nufuk/.ssh/id_ed25519",
-            "echo '${tls_private_key.vm_key.public_key_openssh}' > /home/nufuk/.ssh/id_ed25519.pub",
-            "chmod 644 /home/nufuk/.ssh/id_ed25519.pub"
-        ]
-    connection {
-        type     = "ssh"
-        user     = "nufuk"  # oder Ihr Benutzer
-        private_key = tls_private_key.vm_key.private_key_openssh # oder Private Key
-        host     = "192.168.1.20"
-        port     = 22
-    }
-  }  
-}
-
-resource "null_resource" "save_keys_3" {
-    depends_on = [proxmox_virtual_environment_vm.pve3_vm, tls_private_key.vm_key]
-    provisioner "remote-exec" {
-        inline = [
-            "mkdir -p /home/nufuk/.ssh",
-            "echo '${tls_private_key.vm_key.private_key_openssh}' > /home/nufuk/.ssh/id_ed25519",
-            "chmod 600 /home/nufuk/.ssh/id_ed25519",
-            "echo '${tls_private_key.vm_key.public_key_openssh}' > /home/nufuk/.ssh/id_ed25519.pub",
-            "chmod 644 /home/nufuk/.ssh/id_ed25519.pub"
-        ]
-    connection {
-        type     = "ssh"
-        user     = "nufuk"  # oder Ihr Benutzer
-        private_key = tls_private_key.vm_key.private_key_openssh # oder Private Key
-        host     = "192.168.1.30"
-        port     = 22
-    }
-  }  
-}
 
 resource "random_password" "vm_password" {
   length           = 16

@@ -7,7 +7,3 @@ output "vm2_ip" {
 output "vm3_ip" {
     value = proxmox_virtual_environment_vm.pve3_vm.ipv4_addresses[1][0]
 }
-
-output container_ip {
-    value = proxmox_virtual_environment_container.ansible_container.ipv4
-}

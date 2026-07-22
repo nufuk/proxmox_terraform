@@ -5,6 +5,7 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
     vm_id = 100
     tags = ["tofu", "rocky", "vm", "k8_control_plane"]
     stop_on_destroy = true
+    
 
     cpu {
         cores = 1
@@ -25,6 +26,7 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
     network_device {
         bridge = "vmbr0"
         model = "virtio"
+        firewall  = false
     }
 
     agent {
@@ -80,6 +82,7 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
     network_device {
         bridge = "vmbr0"
         model = "virtio"
+        firewall  = false
     }
 
     agent {
@@ -135,6 +138,7 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
     network_device {
         bridge = "vmbr0"
         model = "virtio"
+        firewall  = false
     }
 
     agent {

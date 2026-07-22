@@ -167,15 +167,15 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
     }
 }
 
-resource "proxmox_virtual_environment_firewall" "node1_firewall" {
+resource "proxmox_node_firewall" "node1_firewall" {
   node_name = var.proxmox_node1 
   enabled = false
 }
-resource "proxmox_virtual_environment_firewall" "node2_firewall" {
+resource "proxmox_node_firewall" "node2_firewall" {
   node_name = var.proxmox_node2
   enabled = false
 }
-resource "proxmox_virtual_environment_firewall" "node3_firewall" {
+resource "proxmox_node_firewall" "node3_firewall" {
   node_name = var.proxmox_node3
   enabled = false
 }

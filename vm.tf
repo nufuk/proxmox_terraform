@@ -8,8 +8,9 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
     
 
     cpu {
-        cores = 1
-        type = "host"
+        sockets = 1
+        cores = 2
+        type = "x86-64-v3"
     }
 
     memory {
@@ -64,12 +65,13 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
     stop_on_destroy = true
 
     cpu {
-        cores = 2
-        type = "host"
+        sockets = 1
+        cores = 4
+        type = "x86-64-v3"
     }
 
     memory {
-        dedicated = 3072
+        dedicated = 6144
     }
 
     disk {
@@ -120,12 +122,13 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
     stop_on_destroy = true
 
     cpu {
-        cores = 2
-        type = "host"
+        sockets = 1
+        cores = 4
+        type = "x86-64-v3"
     }
 
     memory {
-        dedicated = 3072
+        dedicated = 6144
     }
 
     disk {

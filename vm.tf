@@ -78,7 +78,7 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
         datastore_id = "local-lvm"
         import_from = var.vm_image_file_id
         interface = "virtio0"
-        size = 10
+        size = 100
     }
 
     network_device {
@@ -135,7 +135,7 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
         datastore_id = "local-lvm"
         import_from = var.vm_image_file_id
         interface = "virtio0"
-        size = 12
+        size = 100
     }
 
     network_device {

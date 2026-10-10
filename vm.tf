@@ -14,7 +14,7 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
     }
 
     memory {
-        dedicated = 2048
+        dedicated = 3072
     }
 
     disk {

@@ -14,14 +14,14 @@ resource "proxmox_virtual_environment_vm" "pve1_vm" {
     }
 
     memory {
-        dedicated = 3072
+        dedicated = 2048
     }
 
     disk {
         datastore_id = "local-lvm"
         import_from = var.vm_image_file_id
         interface = "virtio0"
-        size = 10
+        size = 16
     }
 
     network_device {

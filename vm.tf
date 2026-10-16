@@ -78,7 +78,18 @@ resource "proxmox_virtual_environment_vm" "pve2_vm" {
         datastore_id = "local-lvm"
         import_from = var.vm_image_file_id
         interface = "virtio0"
-        size = 100
+        size = 16
+    }
+
+    disk {
+        interface     = "scsi1"
+        datastore_id  = "local-lvm"
+        size          = 64
+        file_format   = "raw"
+        discard       = "on"
+        ssd           = true
+        cache         = "none"
+        iothread      = true
     }
 
     network_device {
@@ -135,7 +146,18 @@ resource "proxmox_virtual_environment_vm" "pve3_vm" {
         datastore_id = "local-lvm"
         import_from = var.vm_image_file_id
         interface = "virtio0"
-        size = 100
+        size = 16
+    }
+
+    disk {
+        interface     = "scsi1"
+        datastore_id  = "local-lvm"
+        size          = 64
+        file_format   = "raw"
+        discard       = "on"
+        ssd           = true
+        cache         = "none"
+        iothread      = true
     }
 
     network_device {
